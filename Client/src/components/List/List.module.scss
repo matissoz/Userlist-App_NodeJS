@@ -1,0 +1,18 @@
+@import "src/styles/variables";
+
+.list {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 2px solid $primaryColor;
+    border-radius: 1rem;
+}
+
+.noData {
+    border: 2px solid $primaryColor;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 3rem;
+    justify-content: center;
+}
