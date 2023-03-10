@@ -31,7 +31,7 @@ If everything went well you should see `Application started on port 3004!` in th
 1. To start run these in the Client folder (in shown order)
 - `npm install` 
 - `npm run dev`
-
+ 
 ## What to add in the near future
 
 1. Validation on server and client side

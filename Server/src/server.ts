@@ -17,7 +17,7 @@ app.get("/all-users", async (req: Request, res: Response) => {
     throw Error(e);
   }
 });
-
+ 
 app.post("/add-user", async (req: Request, res: Response) => {
   const { name, email, password, age } = req.body;
 
