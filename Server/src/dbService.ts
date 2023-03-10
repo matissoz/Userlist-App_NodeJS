@@ -3,7 +3,7 @@ import mysql from 'mysql2'
 
 const db = mysql.createPool({
     connectionLimit: 10,
-    host: "127.0.0.1",
+    host: "localhost",
     user: "root",
     password: "123456",
     database: "crud",
@@ -25,7 +25,7 @@ export const getAllUsers = (async () => {
 export const addUser = (async ( name, email, password, age ) => {
     const [rows] = await db.query(`
         INSERT INTO users
-        (name, email, password, age)
+        (name, email, password, age) 
         VALUES(?, ?, ?, ?)
     `, [ name, email, password, age ]);
 
