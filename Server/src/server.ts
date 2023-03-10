@@ -11,63 +11,50 @@ app.use(cors({ origin: "*" }));
 
 
 app.get("/all-users", async (req: Request, res: Response) => {
-  let allUsers;
-
   try{
-    allUsers = await getAllUsers();
+    const allUsers = await getAllUsers()
+    res.send(allUsers) 
   } catch(e) {
-
-    return res.send({ ...e, status: "failed" }) 
+    throw Error(e) 
   }
-
-  return res.send({ users: [...allUsers], status: "success" }) 
 });
 
 
 
 app.post("/add-user", async (req: Request, res: Response) => {
-  let addNewUser
   const { name, email, password, age } = req.body;
   
   try {
-    addNewUser = await addUser( name, email, password, age )
+    const addNewUser = await addUser( name, email, password, age )
+    res.send(addNewUser)
   } catch(e) {
-
-    return res.send({ ...e, status: "failed" })
+    throw Error(e) 
   }
-    
-  return res.send({ ...addNewUser, status: "success" });
 }); 
 
 
 app.put("/edit-user/:id", async (req: Request, res: Response) => {
-  let editedUser
   const id = req.params.id 
   const { name, email, password, age } = req.body;
 
   try {
-    editedUser = await editUser( name, email, password, age, id )
+    const editedUser = await editUser( name, email, password, age, id )
+    res.send(editedUser)
   } catch(e) {
-
-    return res.send({ ...e, status: "failed" })
+    throw Error(e) 
   }
-
-  return res.send({ ...editedUser, status: "success" });
 });
 
 
 app.delete("/delete-user/:id", async (req: Request, res: Response) => {
-  let deletedUser
   const id = req.params.id 
 
   try {
-    deletedUser = await deleteUser( id )
+    const deletedUser = await deleteUser( id )
+    return res.send(deletedUser)
   } catch(e) {
-
-    return res.send({ ...e, status: "failed" })
+    throw Error(e) 
   }
-
-  return res.send({ ...deletedUser, status: "success" });
 });
 
 

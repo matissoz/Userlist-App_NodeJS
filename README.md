@@ -26,13 +26,13 @@ Client and Server should both be run simultaneously.
 - `docker run --name=mysql1 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e  MYSQL_ROOT_HOST=% -d mysql/mysql-server:8.0`
 3. Now you want to create database with name `crud`
 4. See `createTable.sql` for command to create table 
-5. To start run these in the root folder (in shown order)
+5. To start run these in the Server folder (in shown order)
 - `npm install` 
 - `npm run start:nodemon`
 After you can remove the container with `docker rm mysql1`
 
 ### Running Client
-1. To start run these in the root folder (in shown order)
+1. To start run these in the Client folder (in shown order)
 - `npm install` 
 - `npm run dev`
 

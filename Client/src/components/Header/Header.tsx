@@ -1,8 +1,12 @@
 import Navbar from '../Navbar/Navbar';
 import style from './Header.module.scss'
 
-
-const Header = () => {
+type HeaderProps = {
+    onModalOpen: (state: boolean) => void
+}
+const Header = ({
+    onModalOpen
+}: HeaderProps) => {
 
     
     return (
@@ -10,7 +14,7 @@ const Header = () => {
             <span className={style.header__title}>
                 CRUD
             </span>
-            <Navbar/>
+            <Navbar onModalOpen={onModalOpen}/>
         </header>
     )
 }

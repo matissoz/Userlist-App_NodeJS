@@ -1,60 +1,34 @@
-import { UseQueryResult } from 'react-query'
+import { User } from "../../utils/apiService";
+import ListItem from "./components/ListItem/ListItem";
+import style from "./List.module.scss";
 
-import { ApiResponse } from '../../utils/apiService'
-import ListItem from './ListItem/ListItem'
-import style from './List.module.scss'
+type ListProps = {
+  users: User[];
+  onEdit: (user: User) => void;
+  onDelete: (id: string) => void;
+};
 
-
-type Props = {
-    getQuery: UseQueryResult<ApiResponse, unknown>;
-}
-
-
-const List = ({ 
-    getQuery 
-}: Props) => {
-
-    if(getQuery.isLoading) {
-        return (
-            <div className={style.noData}>
-                <h3>Loading...</h3>
-            </div>
-        )
-    }
-
-    if(getQuery.isError) {
-        return (
-            <div className={style.noData}>
-                 <h3>Loading...</h3>
-            </div>
-        )
-    }
-
-    const usersData = getQuery.data?.users;
-
-    if(usersData?.length == 0) {
-        return (
-            <div className={style.noData}>
-                <h3>No user has been added yet!</h3>
-            </div>
-        )
-    } 
-    
-
-    return (
-        <>
-            <div className={style.list}>
-                {usersData && usersData
-                    .map(userData => 
-                    <ListItem 
-                        key={userData.id} 
-                        user={userData} 
-                    />
-                )}
-            </div>
-        </>
-    )
-}
-
+const List = ({ users, onEdit, onDelete }: ListProps) => (
+  <>
+    {users.length == 0 ? (
+      <div className={style.list__empty}>No user has been added yet!</div>
+    ) : (
+      <div className={style.list}>
+        {users.map((user) => (
+          <ListItem
+            key={user.id}
+            user={user}
+            onEdit={() => {
+              onEdit(user);
+            }}
+            onDelete={() => {
+              onDelete(user.id);
+            }}
+          />
+        ))}
+      </div>
+    )}
+  </>
+);
 
 export default List;

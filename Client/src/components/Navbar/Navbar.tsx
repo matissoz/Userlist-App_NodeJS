@@ -1,46 +1,13 @@
-import { useMutation, useQueryClient } from 'react-query'
-import { useState } from 'react'
+import Button from "../../common/Button/Button";
 
-import Modal from '../Modal/Modal'
-import Button from '../Shared/Button/Button'
-import Form from '../Form/Form'
-import { addNewUser } from '../../utils/apiService'
-import style from './Navbar.module.scss'
+type NavbarProps = {
+  onModalOpen: (state: boolean) => void;
+};
 
-
-const Navbar = () => {
-
-    const [openModal, setOpenModal] = useState(false)
-
-    const queryClient = useQueryClient()
-    const AddPostMutation = useMutation({
-        mutationFn: addNewUser,
-        onSuccess:()=>{
-            queryClient.invalidateQueries("usersData")
-        }
-    })
-
-
-    return (  
-        <div>
-            <Button
-                onClick={() => setOpenModal(true)}
-            >
-                Add New
-            </Button>
-            <Modal
-                openModal={openModal}
-                setOpenModal={setOpenModal}
-            >
-                <Form
-                    buttonLabel='Submit'
-                    mutation={AddPostMutation}
-                    setOpenModal={setOpenModal}
-                />
-            </Modal>
-        </div>
-    );
-}
-
+const Navbar = ({ onModalOpen }: NavbarProps) => (
+  <div>
+    <Button onClick={() => onModalOpen(true)}>Add New</Button>
+  </div>
+);
 
 export default Navbar;
