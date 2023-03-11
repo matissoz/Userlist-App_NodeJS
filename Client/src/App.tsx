@@ -14,12 +14,12 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Modal from "./components/Modal/Modal";
 import Form from "./components/Form/Form";
-import Spinner from "./assets/3-dots-bounce.svg"
+import Spinner from "./assets/svg/3-dots-bounce.svg"
 
 function App() {
   const queryClient = useQueryClient();
 
-  const { isLoading, data } = useQuery({
+  const { isLoading: GetAllUsersLoading, data } = useQuery({
     queryKey: ["usersData"],
     queryFn: getAllUsers,
     keepPreviousData: true,
@@ -49,7 +49,7 @@ function App() {
   const [openModal, setOpenModal] = useState(false);
   const [editData, setEditData] = useState<User | null>(null);
 
-  if (isLoading || AddUserLoading || EditUserLoading || DeleteUserLoading) {
+  if (GetAllUsersLoading || AddUserLoading || EditUserLoading || DeleteUserLoading) {
     return (
       <div className={style.app}>
         <div className={style.app__loading}>

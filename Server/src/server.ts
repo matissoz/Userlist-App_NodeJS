@@ -17,9 +17,9 @@ app.get("/all-users", async (req: Request, res: Response) => {
     throw Error(e);
   }
 });
- 
-app.post("/add-user", async (req: Request, res: Response) => {
-  const { name, email, password, age } = req.body;
+
+app.post("/add-user", async ({ body }: Request, res: Response) => {
+  const { name, email, password, age } = body;
 
   try {
     const addNewUser = await addUser(name, email, password, age);
@@ -29,9 +29,9 @@ app.post("/add-user", async (req: Request, res: Response) => {
   }
 });
 
-app.put("/edit-user/:id", async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const { name, email, password, age } = req.body;
+app.put("/edit-user/:id", async ({ body, params }: Request, res: Response) => {
+  const { id } = params;
+  const { name, email, password, age } = body;
 
   try {
     const editedUser = await editUser(name, email, password, age, id);
@@ -41,8 +41,8 @@ app.put("/edit-user/:id", async (req: Request, res: Response) => {
   }
 });
 
-app.delete("/delete-user/:id", async (req: Request, res: Response) => {
-  const id = req.params.id;
+app.delete("/delete-user/:id", async ({ params }: Request, res: Response) => {
+  const { id } = params;
 
   try {
     const deletedUser = await deleteUser(id);
