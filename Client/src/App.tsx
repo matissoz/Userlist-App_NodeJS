@@ -14,6 +14,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Modal from "./components/Modal/Modal";
 import Form from "./components/Form/Form";
+import Spinner from "./assets/3-dots-bounce.svg"
 
 function App() {
   const queryClient = useQueryClient();
@@ -51,7 +52,10 @@ function App() {
   if (isLoading || AddUserLoading || EditUserLoading || DeleteUserLoading) {
     return (
       <div className={style.app}>
-        <h3>Loading...</h3>
+        <div className={style.app__loading}>
+          <h3>Loading</h3>
+          <img src={Spinner} width="50px"/>
+        </div>
       </div>
     );
   }
