@@ -14,7 +14,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Modal from "./components/Modal/Modal";
 import Form from "./components/Form/Form";
-import Spinner from "./assets/svg/3-dots-bounce.svg"
+import Spinner from "./components/Spinner/Spinner";
 
 function App() {
   const queryClient = useQueryClient();
@@ -53,8 +53,7 @@ function App() {
     return (
       <div className={style.app}>
         <div className={style.app__loading}>
-          <h3>Loading</h3>
-          <img src={Spinner} width="50px"/>
+          <Spinner/>
         </div>
       </div>
     );
