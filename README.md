@@ -2,8 +2,6 @@
 
 ![preview](./demo.gif)
 
-## Initial time for completion ~8h
-
 ## Technology used
 
 - ReactJS / Typescript
